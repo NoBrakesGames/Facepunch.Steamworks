@@ -488,6 +488,41 @@ namespace Steamworks.Data
 	}
 	
 	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
+	internal struct EquippedProfileItemsChanged_t : ICallbackData
+	{
+		internal ulong SteamID; // m_steamID CSteamID
+		
+		#region SteamCallback
+		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf( typeof(EquippedProfileItemsChanged_t) );
+		public int DataSize => _datasize;
+		public CallbackType CallbackType => CallbackType.EquippedProfileItemsChanged;
+		#endregion
+	}
+	
+	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPackSize )]
+	internal struct EquippedProfileItems_t : ICallbackData
+	{
+		internal Result Result; // m_eResult EResult
+		internal ulong SteamID; // m_steamID CSteamID
+		[MarshalAs(UnmanagedType.I1)]
+		internal bool HasAnimatedAvatar; // m_bHasAnimatedAvatar bool
+		[MarshalAs(UnmanagedType.I1)]
+		internal bool HasAvatarFrame; // m_bHasAvatarFrame bool
+		[MarshalAs(UnmanagedType.I1)]
+		internal bool HasProfileModifier; // m_bHasProfileModifier bool
+		[MarshalAs(UnmanagedType.I1)]
+		internal bool HasProfileBackground; // m_bHasProfileBackground bool
+		[MarshalAs(UnmanagedType.I1)]
+		internal bool HasMiniProfileBackground; // m_bHasMiniProfileBackground bool
+		
+		#region SteamCallback
+		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf( typeof(EquippedProfileItems_t) );
+		public int DataSize => _datasize;
+		public CallbackType CallbackType => CallbackType.EquippedProfileItems;
+		#endregion
+	}
+	
+	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
 	internal struct IPCountry_t : ICallbackData
 	{
 		
@@ -573,13 +608,13 @@ namespace Steamworks.Data
 	}
 	
 	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
-	internal struct ModalGamepadTextInputDismissed_t : ICallbackData
+	internal struct FloatingGamepadTextInputDismissed_t : ICallbackData
 	{
 		
 		#region SteamCallback
-		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf( typeof(ModalGamepadTextInputDismissed_t) );
+		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf( typeof(FloatingGamepadTextInputDismissed_t) );
 		public int DataSize => _datasize;
-		public CallbackType CallbackType => CallbackType.ModalGamepadTextInputDismissed;
+		public CallbackType CallbackType => CallbackType.FloatingGamepadTextInputDismissed;
 		#endregion
 	}
 	
@@ -2982,6 +3017,22 @@ namespace Steamworks.Data
 		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf( typeof(GSStatsUnloaded_t) );
 		public int DataSize => _datasize;
 		public CallbackType CallbackType => CallbackType.GSStatsUnloaded;
+		#endregion
+	}
+	
+	[StructLayout( LayoutKind.Sequential, Pack = Platform.StructPlatformPackSize )]
+	internal struct SteamNetworkingFakeIPResult_t : ICallbackData
+	{
+		internal Result Result; // m_eResult EResult
+		internal NetIdentity Dentity; // m_identity SteamNetworkingIdentity
+		internal uint IP; // m_unIP uint32
+		[MarshalAs(UnmanagedType.ByValArray, SizeConst = 8, ArraySubType = UnmanagedType.U2)]
+		internal ushort[] Ports; // m_unPorts uint16 [8]
+		
+		#region SteamCallback
+		public static int _datasize = System.Runtime.InteropServices.Marshal.SizeOf( typeof(SteamNetworkingFakeIPResult_t) );
+		public int DataSize => _datasize;
+		public CallbackType CallbackType => CallbackType.SteamNetworkingFakeIPResult;
 		#endregion
 	}
 	
